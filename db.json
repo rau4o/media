@@ -1,5 +1,18 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "5af2",
+      "name": "Todd Rosenbaum"
+    },
+    {
+      "id": "4afc",
+      "name": "Antonia Altenwerth"
+    },
+    {
+      "id": "4bdf",
+      "name": "Ramon Nader"
+    }
+  ],
   "albums": [],
   "photos": []
 }
