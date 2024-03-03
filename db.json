@@ -13,6 +13,12 @@
       "name": "Ramon Nader"
     }
   ],
-  "albums": [],
+  "albums": [
+    {
+      "id": 10,
+      "title": "test album",
+      "userId": "4bdf"
+    }
+  ],
   "photos": []
 }
