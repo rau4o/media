@@ -1,6 +1,6 @@
-function AlbumList() {
+function AlbumList({ user }) {
     return (
-
+        <div></div>
     )
 }
 
