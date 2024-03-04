@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {faker} from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 
 const albumsApi = createApi({
     reducerPath: 'albums',
@@ -9,7 +9,13 @@ const albumsApi = createApi({
     endpoints(builder) {
         return {
             fetchAlbums: builder.query({
-                providesTags: ['Album'],
+                providesTags: (result, error, user) => {
+                    const tags = result.map((album) => {
+                        return { type: 'Album', id: album.userId};
+                    });
+                    tags.push({ type: 'UserAlbums', id: user.id});
+                    return tags;
+                },
                 query: (user) => {
                     return {
                         url: '/albums',
@@ -17,11 +23,13 @@ const albumsApi = createApi({
                             userId: user.id,
                         },
                         method: 'GET'
-                    }
+                    };
                 }
             }),
             addAlbum: builder.mutation({
-                invalidatesTags: ['Album'],
+                invalidatesTags: (result, error, user) => {
+                    return [{ type: 'UserAlbums', id: user.id}];
+                },
                 query: (user) => {
                     return {
                         url: '/albums',
@@ -30,6 +38,17 @@ const albumsApi = createApi({
                             userId: user.id,
                             title: faker.commerce.productName()
                         }
+                    };
+                }
+            }),
+            removeAlbum: builder.mutation({
+                invalidatesTags: (result, error, album) => {
+                    return [{ type: 'Album', id: album.id}];
+                },
+                query: (album) => {
+                    return {
+                        url: `/albums/${album.id}`,
+                        method: 'DELETE'
                     }
                 }
             })
@@ -37,5 +56,5 @@ const albumsApi = createApi({
     }
 });
 
-export const { useFetchAlbumsQuery, useAddAlbumMutation } = albumsApi;
+export const { useFetchAlbumsQuery, useAddAlbumMutation, useRemoveAlbumMutation } = albumsApi;
 export { albumsApi };
