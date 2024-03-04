@@ -23,7 +23,18 @@
       "id": "a329",
       "userId": "5af2",
       "title": "Rustic Steel Chair"
+    },
+    {
+      "id": "76e1",
+      "userId": "4afc",
+      "title": "Ergonomic Rubber Gloves"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "id": "930a",
+      "albumId": "76e1",
+      "url": "https://loremflickr.com/150/150/abstract?lock=16363"
+    }
+  ]
 }
