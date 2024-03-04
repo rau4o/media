@@ -24,8 +24,8 @@ function UserList() {
 
     let content;
 
-    // if (isLoading) {
-    //     return <Skeleton times={s} className="h-10 w-full"></Skeleton>
+    // if (isLoadingUsers) {
+    //     return <Skeleton times={4} className="h-10 w-full"></Skeleton>
     // }
 
     if (loadingUsersError) {

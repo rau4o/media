@@ -1,8 +1,16 @@
-import {useFetchAlbumsQuery} from "../store";
+import {useFetchAlbumsQuery, useAddAlbumMutation} from "../store";
 import ExpandablePanel from "./ExpandablePanel";
+import Button from "./Button";
 
 function AlbumList({ user }) {
     const { data, error, isLoading } = useFetchAlbumsQuery(user);
+    useFetchAlbumsQuery(user);
+    const [addAlbum, results] = useAddAlbumMutation();
+
+    const handleAddAlbum = () => {
+        addAlbum(user);
+    }
+
     let content;
     if (!data) {
         content = 'Error loading albums';
@@ -20,6 +28,7 @@ function AlbumList({ user }) {
         <div>
             <div>
                 Albums for { user.name }
+                <Button onClick={handleAddAlbum}>+ Add Album</Button>
             </div>
             <div>
                 {content}
